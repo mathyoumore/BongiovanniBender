@@ -1,8 +1,8 @@
 PImage img, outBongio;
 PGraphics bongioCopy;
 
-String iname = "colorbird";
-String inExt = ".jpg";
+String iname = "colorbird2";
+String iExt = ".jpg";
 String outExt = ".png";
 
 boolean selecting = true;
@@ -13,10 +13,14 @@ int bottomLim = 0;
 int leftLim = 0;
 int rightLim = 0;
 
-boolean fixedWidthTrigger = true;
+boolean fixedWidthTrigger = false;
 int fixedWidth = 20;
+
+boolean fixedHeightTrigger = true;
+int fixedHeight = 40;
+
 void setup() {
-  img = loadImage(iname + inExt);
+  img = loadImage(iname + iExt);
   bongioCopy = createGraphics(img.width, img.height);
   bongioCopy.copy(img, 0, 0, img.width, img.height, 0, 0, img.width, img.height);
   size(img.width, img.height);
@@ -39,7 +43,7 @@ void draw()
     }
   } else if (drawing)
   {
-    //This is where you switch this to an upload/download to webpage thing
+    
     image (img, 0, 0);
     stroke(255, 0, 0);
     noFill();
@@ -48,7 +52,7 @@ void draw()
     img.loadPixels();
 
     outBongio = bongiovanniSort(bongioCopy, leftLim, topLim, rightLim, bottomLim, 0.0);
-    outBongio.save(iname + "SortBongio.png");
+    outBongio.save(iname + "Bongiovanni.png");
     image(outBongio, 0, 0);
     img = outBongio;
     resetParams();
@@ -85,6 +89,10 @@ void mousePressed()
     if (fixedWidthTrigger)
     {
       rightLim = leftLim + fixedWidth;
+    }
+    if (fixedHeightTrigger)
+    {
+     bottomLim = topLim + fixedHeight; 
     }
     drawing = true;
     finalizing = false;
