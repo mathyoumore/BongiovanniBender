@@ -38,6 +38,12 @@ Temporary Items
 Thumbs.db
 ehthumbs.db
 
+# Images
+*.png
+*.jpg
+*.psd
+*.gif
+
 # Folder config file
 Desktop.ini
 
